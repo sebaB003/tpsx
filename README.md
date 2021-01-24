@@ -1,6 +1,6 @@
 # TPSX
 
-TPSX or topics extraction is package that you can use to extract topics from a text
+TPSX or topics extraction is a package that you can use to extract topics from a text
 
 ## Technologies
 *TPSX* is built using:
