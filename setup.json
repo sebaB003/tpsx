@@ -1,0 +1,13 @@
+{
+  "name": "tpsx",
+  "version": "1.0",
+  "dev_state": "beta",
+  "author": "Sebastiano Bisacchi",
+  "author_email": "sebastianobisacchi@outlook.it",
+  "description": "Topic extractor",
+  "classifiers": [
+    "Programming language :: Python 3.8",
+    "Natural language :: English",
+    "Topic :: Natural language processing"
+  ]
+}
