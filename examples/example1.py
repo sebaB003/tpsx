@@ -21,5 +21,6 @@ for r in tpsx.related_topics:
 results = tpsx.predict(['I gatti mangiano i pesci (non nemo) anche quelli che volano'], True)
 
 # Display results
+
 for result in results:
-    results[result].show_data(True)
+    result.show_data()

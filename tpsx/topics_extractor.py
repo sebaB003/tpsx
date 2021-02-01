@@ -190,7 +190,6 @@ class TopicsExtractor:
         """
         :param language: str
             language used in the model
-            [english]
         """
         self.language = language.lower()
         self.cleaner = TextCleaner(language)
@@ -438,6 +437,13 @@ class TopicsExtractor:
             for topic in topics_list:
                 self.add_word(word, topic)
 
+        self._sort_data()
+
+    def _sort_data(self):
+        self.words = sorted(self.words, key=lambda o: o.label, reverse=False)
+        self.topics = sorted(self.topics, key=lambda o: o.label, reverse=False)
+        self.relations = sorted(self.relations, key=lambda o: o.word.label, reverse=False)
+
     def _execute_prediction(self, words, merge_topics):
         topics = {}
 
@@ -464,7 +470,7 @@ class TopicsExtractor:
 
         return topics
 
-    def predict(self, sentences, merge_topics=True):
+    def predict(self, sentences, merge_topics=True, sort_results=True):
         """Predict the topic_label of a list of words
 
         If merge_topics is true the output topics score will be merged based
@@ -474,6 +480,7 @@ class TopicsExtractor:
 
         :param sentences: list
         :param merge_topics: bool
+        :param sort_results: bool
         :return:
         """
 
@@ -496,6 +503,11 @@ class TopicsExtractor:
 
         topics = self._execute_prediction(cleaned_data, merge_topics)
 
+        if sort_results:
+            topics_list = []
+            for topic in topics:
+                topics_list.append(topics[topic])
+            return sorted(topics_list, key=lambda t: t.topic_score, reverse=True)
         return topics
 
     def save(self, path=None, filename=None):
